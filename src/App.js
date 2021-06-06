@@ -1,14 +1,12 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {Heading} from './components/Heading'
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <Typography variant="h1" component="h1">
-          h1. Heading
-        </Typography>
-      </header>
+      <Heading />
     </div>
   );
 }
