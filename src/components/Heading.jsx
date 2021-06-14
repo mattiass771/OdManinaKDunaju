@@ -1,75 +1,46 @@
 import React from 'react'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
+import { xAnim } from '../anims/xAnim'
+
+import dunaj from '../icons/river.png'
+import manin from '../icons/mountain.png'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
 
 export const Heading = () => {
-    const colStyles = {
-        height: '400px'
-    }
-    const xAnim = (dir) => {
-        const variantObj = {
-            hidden: { 
-                x: 0,
-            },
-            visible: {
-                x: 0,
-                transition: {
-                    duration: 0.7,
-                    ease: "easeOut",
-                }
-            }
-        }
-        switch(dir) {
-            case 'left':
-                return {...variantObj, hidden: { x: 250 }}
-            case 'right':
-                return {...variantObj, hidden: { x: -250 }}
-            default: 
-                return {...variantObj}
-        } 
-        
-      }
     return (
-        <Container fluid>
+        <Container style={{backgroundColor: '#c19a94'}} className="py-4" fluid>
             <Row>
-                <Col 
-                    style={{
-                        ...colStyles,
-                        backgroundColor: 'green'
-                    }} 
-                    fluid
-                >
+                <Col>
                     <motion.div 
+                        style={{maxWidth: '400px', backgroundColor: 'rgba(0,0,0,0.0)', float: 'left'}}
+                        className="icons-row"
                         initial="hidden" 
                         animate="visible" 
                         variants={xAnim('right')} 
                     >
-                            <div style={{width: '300px', height: '300px', backgroundColor: 'grey'}}>manin</div>
+                        <Image className="icons-row" src={manin} alt="manin" />
                     </motion.div>
                 </Col>
-                <Col 
-                    style={{
-                        ...colStyles,
-                        backgroundColor: 'red'
-                    }} 
-                    fluid
-                >
-                    <motion.div  
+                <Col>
+                    <motion.div   
+                        style={{ maxWidth: '400px', backgroundColor: 'rgba(0,0,0,0.0)', float: 'right'}}
+                        className="icons-row"
                         initial="hidden" 
                         animate="visible" 
                         variants={xAnim('left')} 
                     >
-                            <div style={{width: '300px', height: '300px', backgroundColor: 'blue', float: 'right'}}>dunaj</div>
+                        <Image className="icons-row" src={dunaj} alt="dunaj" />
                     </motion.div>
                 </Col>
             </Row>
-            <Row className="text-center" style={{marginTop: '-200px'}}>
+            <Row className="text-center bude-svadba">
                 <Col>
-                    Tu bude dalsi text
+                    <article className="shorelines">(budesvadba)</article>
                 </Col>
             </Row>
         </Container>

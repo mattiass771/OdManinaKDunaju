@@ -1,8 +1,205 @@
+@font-face {
+  font-family: Shorelines;
+  src: url("Shorelines\ Script\ Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: MySourcePro;
+  src: url("SourceSansPro-Regular.ttf") format('truetype')
+}
+
+.custom-font {
+  font-family: MySourcePro, sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.shorelines {
+  font-family: Shorelines
+}
+
+.color-code-yellow {
+  color: #c5bba9
+}
+
+.color-code-orange {
+  color: #cf8a32
+}
+
+.color-code-pink {
+  color: #c19a94
+}
+
+.color-code-red {
+  color: #894937
+}
+
+.color-code-grey {
+  color: #6a766a
+}
+
+.btn.btn-dark {
+  border-radius: 5px;
+  border: 2px solid #894937;
+  background-color: #c19a94;
+  font-weight: 500;
+  font-size: 120%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn.btn-dark:hover {
+  border-radius: 5px;
+  border: 2px solid #894937;
+  background-color: #c5bba9;
+  outline: none !important;
+  box-shadow: 0 0 -2px #894937;
+}
+
+.btn.btn-dark:active {
+  border-radius: 5px;
+  border: 0px solid #894937;
+  background-color: #c19a94;
+  outline: none !important;
+  box-shadow: 0 0 -10px #894937;
+}
+
+input[type='text'] {
+  border-radius: 2px;
+  border: 1px solid #894937;
+  background-color: #c19a94;
+  font-weight: 500;
+  font-size: 120%;
+  text-align: center;
+}
+
+input[type='text']:focus {
+  border-radius: 0px;
+  border: 0px solid #894937;
+  background-color: #c19a94;
+  outline: none !important;
+  box-shadow: 0 0 10px #894937;
+}
+
+.box-shadow {
+  box-shadow: 0 0 10px #894937;
+}
+
+.box-shadow-light {
+  box-shadow: 0 0 5px #894937;
+}
+
+.box-shadow:hover {
+  box-shadow: 0 0 5px #894937 !important;
+  cursor: pointer
+}
+
+.box-shadow-light:hover {
+  box-shadow: 0 0 2px #894937 !important;
+  cursor: pointer
+}
+
+.box-shadow-light:active {
+  opacity: 0.9;
+  padding: 1px;
+  cursor: pointer
+}
+
+label {
+  font-size: 125%;
+  font-weight: 600;
+}
+
+.bude-svadba {
+  font-size: 750%;
+  color: #6a766a;
+  margin-top: -250px;
+  padding-bottom: 50px;
+}
+
+.icons-row {
+  height: 400px;
+}
+
+.icon-small {
+  background-color: rgba(0,0,0,0.0); 
+  max-height: 400px;
+  float: left;
+}
+
+.icon-image-small {
+  max-height: 400px;
+}
+
+@media only screen and (max-width: 1439px) {
+  .bude-svadba {
+    font-size: 600%;
+    margin-top: -250px;
+    padding-bottom: 85px;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .bude-svadba {
+    font-size: 500%;
+    margin-top: -190px;
+    padding-bottom: 50px;
+  }
+  .icons-row {
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .bude-svadba {
+    font-size: 350%;
+    margin-top: -150px;
+    padding-bottom: 50px;
+  }
+  .icons-row {
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .bude-svadba {
+    font-size: 275%;
+    margin-top: -120px;
+    padding-bottom: 50px;
+  }
+  .icons-row {
+    height: 200px;
+  }
+  .icon-small {
+    margin: 0 auto;
+    max-height: 300px;
+    float: none;
+  }
+  .icon-image-small {
+    max-height: 300px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .bude-svadba {
+    font-size: 180%;
+    margin-top: -30px;
+    padding-bottom: 0px;
+    padding-top: 60px;
+  }
+  .icons-row {
+    height: 125px;
+  }
+  .icon-small {
+    margin: 0 auto;
+    max-height: 200px;
+    float: none;
+  }
+  .icon-image-small {
+    max-height: 200px;
+  }
 }
