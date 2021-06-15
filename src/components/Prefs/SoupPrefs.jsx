@@ -3,11 +3,11 @@ import React, {useState} from 'react'
 import { motion } from 'framer-motion'
 import { xAnim } from '../../anims/xAnim'
 
-import diet from '../../icons/diet.png'
+import soup from '../../icons/soup.png'
 import stop from '../../icons/stop.png'
 import like from '../../icons/like.png'
-import cherryTomatoSalad from '../../icons/cherry-tomato-salad.jpg'
-import foieGras from '../../icons/foie-gras.jpg'
+import tekvicovyKrem from '../../icons/tekvicovy-krem.jpg'
+import vyvar from '../../icons/vyvar.JPG'
 
 import Row from 'react-bootstrap/Row'
 import Image from 'react-bootstrap/Image'
@@ -15,13 +15,13 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Figure from 'react-bootstrap/Figure'
 
-export const ApertizerPrefs = ({setStep}) => {
+export const SoupPrefs = ({setStep}) => {
     const [aper, setAper] = useState('')
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
         setGoAway(true)
-        setTimeout(() => setStep('soup-step'), 100)
+        setTimeout(() => setStep('main-dish-step'), 100)
     }
     return (
         <Row className="text-center">
@@ -32,7 +32,7 @@ export const ApertizerPrefs = ({setStep}) => {
                     animate={!goAway ? 'visible' : 'hidden'} 
                     variants={xAnim('right', -1200)} 
                 >
-                    <Image className="icon-image-small" src={diet} alt="diet" fluid />
+                    <Image className="icon-image-small" src={soup} alt="soup" fluid />
                 </motion.div>
             </Col>
             <Col xs={{span: 10, offset: 1}} md={5} lg={6}>
@@ -44,13 +44,12 @@ export const ApertizerPrefs = ({setStep}) => {
                 >   
                     <article>
                         <h4>
-                            Predjedlo
+                            Polievka
                         </h4>
                         <p>
-                            Kto si dá predjedlo? Všetci. Alebo ako by Attila povedal, "šetkyyy". 
-                            Na výber je kačacie <strong>Foie Gras</strong> pre mäsožrútov a na svoje si prídu aj 
-                            tí, čo mäso v láske nemajú. Čo dostaneme ak sa dajú dokopy Mozarta a Cinderella (Popoluška)?
-                            No predsa <strong>Mozzarella</strong>! (Mozzapuška vraj nieje nič moc.)
+                            Polievočku by som si dal. Ďaľšia replika majiteľa presláveného psa na skejtborde.
+                            Na výber je teda klasika <strong>Slepačí vývar</strong>, ktorý vám pripraví žalúdok na ťažké ráno.
+                            Na svoje si prídu aj zeleninári, pre tých máme v ponuke <strong>Tekvicový krém</strong>!
                         </p>
                     </article>
                     <Row>
@@ -59,14 +58,14 @@ export const ApertizerPrefs = ({setStep}) => {
                                 <Figure.Image
                                     width={100}
                                     height={100}
-                                    alt="foie-gras"
-                                    src={foieGras}
-                                    className={aper === 'foie-gras' ? "box-shadow" : "box-shadow-light"}
-                                    style={{border: aper === 'foie-gras' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
-                                    onClick={() => setAper('foie-gras')}                                    
+                                    alt="vyvar"
+                                    src={vyvar}
+                                    className={aper === 'vyvar' ? "box-shadow" : "box-shadow-light"}
+                                    style={{border: aper === 'vyvar' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                    onClick={() => setAper('vyvar')}                                    
                                 />
-                                <Figure.Caption style={{color: aper === 'foie-gras' ? '#894937' : '#333333'}}>
-                                    Foie Gras, marhuľové chutney, brioche
+                                <Figure.Caption style={{color: aper === 'vyvar' ? '#894937' : '#333333'}}>
+                                    Tradičný slepačí vývar, s rezancami a mäsom
                                 </Figure.Caption>
                             </Figure>
                         </Col>
@@ -75,14 +74,14 @@ export const ApertizerPrefs = ({setStep}) => {
                                 <Figure.Image
                                     width={100}
                                     height={100}
-                                    alt="cherry-tomato-salad"
-                                    src={cherryTomatoSalad}
-                                    className={aper === 'mozzarella-salad' ? "box-shadow" : "box-shadow-light"}
-                                    style={{border: aper === 'mozzarella-salad' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
-                                    onClick={() => setAper('mozzarella-salad')}
+                                    alt="tekvicovy-krem"
+                                    src={tekvicovyKrem}
+                                    className={aper === 'tekvicovy-krem' ? "box-shadow" : "box-shadow-light"}
+                                    style={{border: aper === 'tekvicovy-krem' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                    onClick={() => setAper('tekvicovy-krem')}
                                 />
-                                <Figure.Caption style={{color: aper === 'mozzarella-salad' ? '#894937' : '#333333'}}>
-                                    Mozzarella s bazalkovým pestom, pečené cherry paradajky, rukola, banketka
+                                <Figure.Caption style={{color: aper === 'tekvicovy-krem' ? '#894937' : '#333333'}}>
+                                    Tekvicový krém, opečené tekvicové semiačka a tekvicový olej
                                 </Figure.Caption>
                             </Figure>
                         </Col>
