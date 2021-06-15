@@ -21,7 +21,7 @@ export const NamePrefs = ({setStep}) => {
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
         setGoAway(true)
-        setTimeout(() => setStep('apertizer-step'), 250)
+        setTimeout(() => setStep('diet-step'), 250)
     }
     return (
         <Row className="text-center">
@@ -44,7 +44,7 @@ export const NamePrefs = ({setStep}) => {
                 >   
                     <article>
                         <h4>
-                            Krok 1 - Osobné údaje
+                            Osobné údaje
                         </h4>
                         <p>
                             Vitajte na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
