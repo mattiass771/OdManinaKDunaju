@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { xAnim } from '../../anims/xAnim'
 
 import glutenFree from '../../icons/gluten.png'
-import stop from '../../icons/stop.png'
 import like from '../../icons/like.png'
 
 import Row from 'react-bootstrap/Row'
@@ -17,7 +16,9 @@ import Button from 'react-bootstrap/Button'
 import {GoDiffAdded} from 'react-icons/go'
 import {VscDiffRemoved} from 'react-icons/vsc'
 
-export const DietPrefs = ({setStep}) => {
+import Tooltip from '../Tooltip.jsx'
+
+export const DietPrefs = ({setStep, setUserInfo, userInfo}) => {
     const [allergy, setAllergy] = useState('')
     const [diet, setDiet] = useState('')
     const [allergyArray, setAllergyArray] = useState([])
@@ -25,16 +26,21 @@ export const DietPrefs = ({setStep}) => {
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
+        setUserInfo({...userInfo, allergies: allergyArray, intolerances: dietArray})
         setGoAway(true)
-        setTimeout(() => setStep('name-step'), 250)
+        setTimeout(() => setStep('apertizer-step'), 250)
     }
     const handleAllergy = () => {
-        setAllergyArray([...allergyArray, allergy])
-        setAllergy('')
+        if (allergy && allergy.length > 0) {
+            setAllergyArray([...allergyArray, allergy])
+            setAllergy('')
+        }
     }
     const handleDiet = () => {
-        setDietArray([...dietArray, diet])
-        setDiet('')
+        if (diet && diet.length > 0) {
+            setDietArray([...dietArray, diet])
+            setDiet('')
+        }
     }
     const showAllergies = () => {
         return allergyArray.map((el, i) => {
@@ -81,10 +87,10 @@ export const DietPrefs = ({setStep}) => {
                             Alergie / Intolerancie
                         </h4>
                         <p>
-                            V prvom rade by sme vás poprosili, aby ste si vyplnili diétne preferencie. 
-                            Napíšte po jednom na čo máte alergiu alebo intoleranciu a za každou ingredienciou stlačte tlačítko plus, 
-                            alebo proste enter. Tieto preferencie zohľadníme následne, keby nám nesedeli do jedálnička, budeme vám volať
-                            a dohodneme sa.
+                            V prvom rade by sme ťa poprosili, aby si tu vyplnil tvoje diétne preferencie. 
+                            Napíš po jednom na čo máš alergiu alebo intoleranciu a za každou ingredienciou stlač tlačítko plus, 
+                            alebo proste stlač ENTER. <Tooltip url="https://www.youtube.com/watch?v=RLtkufY62A4" text="Malý návod pre počítačové talenty tu." />
+                            Tieto preferencie zohľadníme následne, keby nám nesedeli do jedálnička, budeme ti volať a dohodneme sa.
                         </p>
                     </article>
                     <Row>
@@ -93,12 +99,13 @@ export const DietPrefs = ({setStep}) => {
                                 <Form.Label>Alergie:</Form.Label>
                                 <InputGroup className="mb-2">
                                     <Form.Control
+                                        spellCheck="false"
                                         type="text" 
                                         value={allergy}
                                         onChange={(e) => setAllergy(e.target.value)}
                                         onKeyPress={(e) => handleKeyPress(e,'aller')}
                                     />
-                                    <Button  onClick={() => handleAllergy()} variant="dark" style={{borderRadius: '0px', border: '1px solid #894937'}}>
+                                    <Button onClick={() => handleAllergy()} variant="dark" style={{borderRadius: '0px', border: '1px solid #894937'}}>
                                         <GoDiffAdded />
                                     </Button>
                                 </InputGroup>
@@ -109,6 +116,7 @@ export const DietPrefs = ({setStep}) => {
                                 <Form.Label>Intolerancie:</Form.Label>
                                 <InputGroup className="mb-2">
                                     <Form.Control
+                                        spellCheck="false"
                                         type="text" 
                                         value={diet}
                                         onChange={(e) => setDiet(e.target.value)}

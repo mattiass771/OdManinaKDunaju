@@ -15,11 +15,14 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Figure from 'react-bootstrap/Figure'
 
-export const ApertizerPrefs = ({setStep}) => {
+import Tooltip from '../Tooltip'
+
+export const ApertizerPrefs = ({setStep, setUserInfo, userInfo}) => {
     const [aper, setAper] = useState('')
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
+        setUserInfo({...userInfo, apertizer: aper})
         setGoAway(true)
         setTimeout(() => setStep('soup-step'), 100)
     }
@@ -48,8 +51,9 @@ export const ApertizerPrefs = ({setStep}) => {
                         </h4>
                         <p>
                             Kto si dá predjedlo? Všetci. Alebo ako by Attila povedal, "šetkyyy". 
+                            <Tooltip text="Ak nechápeš, klikni sem." url="https://www.youtube.com/watch?v=TVl3lglBasg" />
                             Na výber je kačacie <strong>Foie Gras</strong> pre mäsožrútov a na svoje si prídu aj 
-                            tí, čo mäso v láske nemajú. Čo dostaneme ak sa dajú dokopy Mozarta a Cinderella (Popoluška)?
+                            tí, čo mäso v láske nemajú. Čo sa stane ak sa dajú dokopy Mozart a Cinderella (Popoluška)?
                             No predsa <strong>Mozzarella</strong>! (Mozzapuška vraj nieje nič moc.)
                         </p>
                     </article>

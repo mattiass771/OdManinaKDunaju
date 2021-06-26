@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { motion } from 'framer-motion'
 import { xAnim } from '../../anims/xAnim'
@@ -13,15 +13,18 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-export const NamePrefs = ({setStep}) => {
+export const NamePrefs = ({setUser, setUserInfo, userInfo}) => {
     const [name, setName] = useState('')
     const [goAway, setGoAway] = useState(false)
-    const conditionTwo = (name && name.length > 3 && name.match(/\w+[ ]\w+/) !== null)
-    const conditionOne = (name && name.length > 3 && name.match(/\w+/) !== null && !conditionTwo)
+    const conditionTwo = (name && name.length > 3 && name.match(/[a-ža-z]+[ ][a-ža-z]+/i) !== null)
+    const conditionOne = (name && name.length > 3 && name.match(/[a-ža-z]+/i) !== null && !conditionTwo)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
+        const formatted = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        const user = formatted.toLowerCase().replace(/[ ]/g, '-')
+        setUserInfo({...userInfo, name, user})
+        setUser(user)
         setGoAway(true)
-        setTimeout(() => setStep('diet-step'), 250)
     }
     return (
         <Row className="text-center">
@@ -47,8 +50,9 @@ export const NamePrefs = ({setStep}) => {
                             Osobné údaje
                         </h4>
                         <p>
-                            Vitajte na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
-                            Poprosili by sme každého z vás, aby ste nám sem zazdieľali zopár infošiek a tým sebe (aj nám)
+                            Vitaj na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
+                            Poprosili by sme teba aj ostatných hostí z tvojej domácnosti resp. tvojho/tvoju "+1", 
+                            aby ste nám sem zazdieľali zopár infošiek a tým sebe (aj nám)
                             pomohli k lepšiemu zážitku z našej svadby. Aby toho na vás nebolo veľa naraz, rozkúskujeme si to
                             na pár krokov.
                         </p>
@@ -56,6 +60,7 @@ export const NamePrefs = ({setStep}) => {
                     <Form.Group>
                         <Form.Label>Meno a priezvisko:</Form.Label>
                         <Form.Control
+                            spellCheck="false"
                             type="text" 
                             value={name}
                             onChange={(e) => setName(e.target.value)}
