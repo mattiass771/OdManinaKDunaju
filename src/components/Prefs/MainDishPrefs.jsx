@@ -15,13 +15,16 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Figure from 'react-bootstrap/Figure'
 
-export const MainDishPrefs = ({setStep}) => {
-    const [aper, setAper] = useState('')
+import Tooltip from '../Tooltip.jsx'
+
+export const MainDishPrefs = ({setStep, setUserInfo, userInfo}) => {
+    const [mainDish, setMainDish] = useState('')
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const leaveStep = () => {
+        setUserInfo({...userInfo, mainDish})
         setGoAway(true)
-        setTimeout(() => setStep('pig-step'), 100)
+        setTimeout(() => setStep('alcohol-step'), 100)
     }
     return (
         <Row className="text-center">
@@ -49,6 +52,7 @@ export const MainDishPrefs = ({setStep}) => {
                         <p>
                             Zahajujeme sezónu kačacích hodov! Nejedného hosťa určite potešia famózne <strong>Kačacie prsia sous-vide</strong>, 
                             ktoré sama nevesta deň vopred pochytala vo svojich svadobných šatách. (Reklama na prací prášok?)
+                            <Tooltip url="https://www.youtube.com/watch?v=_cPoOXLyL00" text="Ak nechápeš, klikni sem." />
                             Pre nemäsových jedincov máme samozrejme v ponuke výborné <strong>Cuketové rizoto</strong>!
                         </p>
                     </article>
@@ -60,11 +64,11 @@ export const MainDishPrefs = ({setStep}) => {
                                     height={100}
                                     alt="duck"
                                     src={duck}
-                                    className={aper === 'duck' ? "box-shadow" : "box-shadow-light"}
-                                    style={{border: aper === 'duck' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
-                                    onClick={() => setAper('duck')}                                    
+                                    className={mainDish === 'duck' ? "box-shadow" : "box-shadow-light"}
+                                    style={{border: mainDish === 'duck' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                    onClick={() => setMainDish('duck')}                                    
                                 />
-                                <Figure.Caption style={{color: aper === 'duck' ? '#894937' : '#333333'}}>
+                                <Figure.Caption style={{color: mainDish === 'duck' ? '#894937' : '#333333'}}>
                                     Kačacie prsia sous-vide, pyré z červenej kapusty, brusnicová omáčka
                                 </Figure.Caption>
                             </Figure>
@@ -76,18 +80,18 @@ export const MainDishPrefs = ({setStep}) => {
                                     height={100}
                                     alt="risotto-alle-zucchine"
                                     src={risotto}
-                                    className={aper === 'risotto-alle-zucchine' ? "box-shadow" : "box-shadow-light"}
-                                    style={{border: aper === 'risotto-alle-zucchine' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
-                                    onClick={() => setAper('risotto-alle-zucchine')}
+                                    className={mainDish === 'risotto-alle-zucchine' ? "box-shadow" : "box-shadow-light"}
+                                    style={{border: mainDish === 'risotto-alle-zucchine' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                    onClick={() => setMainDish('risotto-alle-zucchine')}
                                 />
-                                <Figure.Caption style={{color: aper === 'risotto-alle-zucchine' ? '#894937' : '#333333'}}>
+                                <Figure.Caption style={{color: mainDish === 'risotto-alle-zucchine' ? '#894937' : '#333333'}}>
                                     Cuketové rizoto, píniové oriešky, parmezán
                                 </Figure.Caption>
                             </Figure>
                         </Col>
                     </Row>
                     <br />
-                    {aper ? 
+                    {mainDish ? 
                         <Button variant="dark" onClick={() => leaveStep()}>
                             Pokračujeme.
                             <Image style={iconStyles} src={like} />
