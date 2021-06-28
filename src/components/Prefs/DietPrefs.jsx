@@ -18,17 +18,21 @@ import {VscDiffRemoved} from 'react-icons/vsc'
 
 import Tooltip from '../Tooltip.jsx'
 
-export const DietPrefs = ({setStep, setUserInfo, userInfo}) => {
+export const DietPrefs = ({setStep, setUserInfo, userInfo, updateUser}) => {
     const [allergy, setAllergy] = useState('')
     const [diet, setDiet] = useState('')
     const [allergyArray, setAllergyArray] = useState([])
     const [dietArray, setDietArray] = useState([])
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
-    const leaveStep = () => {
+    const handleAsyncUserInfo = async () => {
         setUserInfo({...userInfo, allergies: allergyArray, intolerances: dietArray})
-        setGoAway(true)
-        setTimeout(() => setStep('apertizer-step'), 250)
+    }
+    const leaveStep = () => {
+        handleAsyncUserInfo().then(() => {
+            setGoAway(true)
+            setTimeout(() => setStep('apertizer-step'), 250)
+        })
     }
     const handleAllergy = () => {
         if (allergy && allergy.length > 0) {
@@ -84,8 +88,11 @@ export const DietPrefs = ({setStep, setUserInfo, userInfo}) => {
                 >   
                     <article>
                         <h4>
-                            Alergie / Intolerancie
+                            Účasť potvrdená, ďakujeme
                         </h4>
+                        <h5>
+                            V následujúcich krokoch si vyber, čo chceš konzumovať.
+                        </h5>
                         <p>
                             V prvom rade by sme ťa poprosili, aby si tu vyplnil tvoje diétne preferencie. 
                             Napíš po jednom na čo máš alergiu alebo intoleranciu a za každou ingredienciou stlač tlačítko plus, 

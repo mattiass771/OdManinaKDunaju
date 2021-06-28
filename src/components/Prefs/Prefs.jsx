@@ -28,7 +28,6 @@ export const Prefs = () => {
                     if (message === 'success') {
                         setUserInfo({})
                         setHighScoreDb(highScore)
-                        console.log(highScore)
                         setTimeout(() => setStep('pig-step'), 250)
                     } else {
                         setTimeout(() => setStep('diet-step'), 250)
@@ -37,20 +36,37 @@ export const Prefs = () => {
         }
     }, [user])
 
-    const addNewUser = () => {
-        axios.post(`http://localhost:5050/guests/add`, {...userInfo, token})
+    const addNewUser = (name, user, attend) => {
+        axios.post(`http://localhost:5050/guests/add-user`, {name, user, attend, token})
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    }
+
+    const updateUser = () => {
+        axios.post(`http://localhost:5050/guests/add-attribute`, {...userInfo, token})
             .then(res => console.log(res.data))
             .catch(err => alert('Niečo sa pokazilo a nepodarilo sa nahrať dáta do našej databázy. Skontrolujte si pripojenie a skúste to prosím znova.'))
     }
 
+    useEffect(() => {
+        if (
+            userInfo 
+            && userInfo.name 
+            && userInfo.user 
+        ) {
+            updateUser()
+        }
+    }, [userInfo])
+
+
     return (
         <Container style={{backgroundColor: '#e0c8a0'}} className="py-4" fluid>
-            {step === 'name-step' && <NamePrefs userInfo={userInfo} setUserInfo={setUserInfo} setUser={setUser} setStep={setStep} />}
-            {step === 'diet-step' && <DietPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} />}
-            {step === 'apertizer-step' && <ApertizerPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} />}
-            {step === 'soup-step' && <SoupPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} />}
-            {step === 'main-dish-step' && <MainDishPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} />}
-            {step === 'alcohol-step' && <AlcoholPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} addNewUser={addNewUser} />}
+            {step === 'name-step' && <NamePrefs userInfo={userInfo} setUserInfo={setUserInfo} setUser={setUser} setStep={setStep} addNewUser={addNewUser} />}
+            {step === 'diet-step' && <DietPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
+            {step === 'apertizer-step' && <ApertizerPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
+            {step === 'soup-step' && <SoupPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
+            {step === 'main-dish-step' && <MainDishPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
+            {step === 'alcohol-step' && <AlcoholPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
             {step === 'pig-step' && <PigPrefs highScoreDb={highScoreDb} token={token} user={user} setUser={setUser} setStep={setStep} />}
         </Container>
     )
