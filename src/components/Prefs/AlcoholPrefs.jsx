@@ -16,17 +16,18 @@ import Figure from 'react-bootstrap/Figure'
 
 import Tooltip from '../Tooltip'
 
-export const AlcoholPrefs = ({setStep, addNewUser, setUserInfo, userInfo}) => {
+export const AlcoholPrefs = ({setStep, updateUser, setUserInfo, userInfo}) => {
     const [alkohol, setAlkohol] = useState('')
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const handleAsyncUserInfo = async () => {
-        setUserInfo({...userInfo, liquor: alkohol})
+        setUserInfo({...userInfo, liquor: alkohol, closed: true})
     }
     const leaveStep = () => {
-        handleAsyncUserInfo().then(() => addNewUser())
-        setGoAway(true)
-        setTimeout(() => setStep('pig-step'), 100)
+        handleAsyncUserInfo().then(() => {
+            setGoAway(true)
+            setTimeout(() => setStep('pig-step'), 100)
+        })
     }
     return (
         <Row className="text-center">

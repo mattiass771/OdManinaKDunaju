@@ -17,14 +17,18 @@ import Figure from 'react-bootstrap/Figure'
 
 import Tooltip from '../Tooltip.jsx'
 
-export const SoupPrefs = ({setStep, setUserInfo, userInfo}) => {
+export const SoupPrefs = ({setStep, setUserInfo, userInfo,updateUser}) => {
     const [soup, setSoup] = useState('')
     const [goAway, setGoAway] = useState(false)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
-    const leaveStep = () => {
+    const handleAsyncUserInfo = async () => {
         setUserInfo({...userInfo, soup})
-        setGoAway(true)
-        setTimeout(() => setStep('main-dish-step'), 100)
+    }
+    const leaveStep = () => {
+        handleAsyncUserInfo().then(() => {
+            setGoAway(true)
+            setTimeout(() => setStep('main-dish-step'), 100)
+        })
     }
     return (
         <Row className="text-center">
