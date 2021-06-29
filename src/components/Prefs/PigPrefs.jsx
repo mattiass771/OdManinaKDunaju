@@ -43,7 +43,7 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
 
     useEffect(() => {
         if (highScore > 0) {
-            axios.post(`http://localhost:5050/guests/update-highscore/${user}`, {highScore, token})
+            axios.post(`https://www.odmaninakdunaju.sk/guests/update-highscore/${user}`, {highScore, token})
                 .then(res => console.log(res.data))
                 .catch(err => console.log(err))
         }
