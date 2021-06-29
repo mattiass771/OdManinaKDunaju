@@ -36,7 +36,7 @@ export const Heading = () => {
                             } 
                         />
                         <motion.div 
-                            style={{position: 'absolute', left: -37.5, bottom: 0}}
+                            style={{position: 'absolute', left: -29, bottom: 0}}
                             initial="hidden" 
                             animate="visible" 
                             variants={xAnim('right', 0, 1, '50vw', 4)} 
@@ -68,7 +68,7 @@ export const Heading = () => {
                                 } 
                             />
                         <motion.div 
-                            style={{position: 'absolute', right: -37.5, bottom: 0}}
+                            style={{position: 'absolute', right: -29, bottom: 0}}
                             initial="hidden" 
                             animate="visible" 
                             variants={xAnim('left', 0, 1, '-50vw', 4)} 

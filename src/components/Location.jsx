@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import Map from './Map'
 
@@ -8,21 +8,31 @@ import Col from 'react-bootstrap/Col'
 
 import staryDom from '../photos/stary-dom.PNG'
 
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from "react-intersection-observer";
 import { xAnim } from '../anims/xAnim'
 
 export const Location = () => {
     const geoLocation = {lat: 48.335312831898335, lng: 17.310179542929042}
+    const controls = useAnimation();
+    const [ref, inView] = useInView();
+  
+    useEffect(() => {
+      if (inView) {
+        controls.start("visible");
+      }
+    }, [controls, inView]);
     return (
         <Container style={{backgroundColor: '#c19a94'}} className="py-4" fluid>
             <Row className="px-4">
                 <motion.div 
                     className="col-12 col-md-6"
+                    ref={ref}
                     initial="hidden" 
-                    animate="visible" 
+                    animate={controls}
                     variants={xAnim('right')}
                     style={{
-                        height: '400px', 
+                        height: '500px', 
                         backgroundImage: `url(${staryDom})`, 
                         backgroundSize: 'cover', 
                         backgroundRepeat: 'no-repeat', 
@@ -30,10 +40,11 @@ export const Location = () => {
                     }}
                 >
                     <motion.div
-                        style={{height: '400px'}}
+                        style={{height: '500px'}}
+                        ref={ref}
                         initial="hidden" 
-                        animate="visible" 
-                        variants={xAnim('left', -500, 1.5)} 
+                        animate={controls}
+                        variants={xAnim('left', -1000, 1.5)} 
                     >
                         <Row className="text-center d-none d-md-flex" style={{alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.6)', width: '70%', height: '100%'}}>
                             <Col>
@@ -51,15 +62,16 @@ export const Location = () => {
                 </motion.div>
                 <motion.div 
                     className="col-12 col-md-6"
+                    ref={ref}
                     initial="hidden" 
-                    animate="visible" 
+                    animate={controls}
                     variants={xAnim('left')} 
                     style={{backgroundColor: '#F2F1F0'}}
                 >
                     <Map 
                         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API}&v=3.exp&libraries=geometry,drawing,places`}
                         loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
+                        containerElement={<div style={{ height: `500px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         lat={geoLocation.lat}
                         lng={geoLocation.lng}
