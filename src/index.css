@@ -12,6 +12,10 @@
   font-family: MySourcePro, sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
