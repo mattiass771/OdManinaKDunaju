@@ -5,7 +5,7 @@ import Tooltip from 'react-bootstrap/Tooltip'
 
 import { AiFillInfoCircle } from 'react-icons/ai'
 
-export default ({url, text}) => {
+export default ({url, text, component}) => {
     return (
         <OverlayTrigger
             placement={"top"}
@@ -18,7 +18,7 @@ export default ({url, text}) => {
             }
             > 
                 <a target="_blank" rel="noopener noreferrer" href={url} style={{textDecoration: 'none', color: '#894937'}}>
-                    <AiFillInfoCircle style={{margin: '-14px 4px 0px 4px', cursor: 'pointer'}} />
+                    {component ? component : <AiFillInfoCircle style={{margin: '-14px 4px 0px 4px', cursor: 'pointer'}} />}
                 </a>
         </OverlayTrigger>
     )
