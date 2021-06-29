@@ -39,7 +39,7 @@ export const Heading = () => {
                             style={{position: 'absolute', left: -29, bottom: 0}}
                             initial="hidden" 
                             animate="visible" 
-                            variants={xAnim('right', 0, 1, '50vw', 4)} 
+                            variants={xAnim('right', 1, 1, '50vw', 4)} 
                         >
                             
                             <Tooltip 
@@ -71,7 +71,7 @@ export const Heading = () => {
                             style={{position: 'absolute', right: -29, bottom: 0}}
                             initial="hidden" 
                             animate="visible" 
-                            variants={xAnim('left', 0, 1, '-50vw', 4)} 
+                            variants={xAnim('left', 1, 1, '-50vw', 4)} 
                         >
                             <Tooltip 
                                 text="Matúž" 
