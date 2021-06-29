@@ -2,9 +2,11 @@ export const xAnim = (dir, len, del, expect, dur) => {
     const variantObj = {
         hidden: { 
             x: 0,
+            scale: 0,
         },
         visible: {
             x: expect || 0,
+            scale: 1,
             transition: {
                 delay: del || 0,
                 duration: dur || 0.7,
@@ -14,9 +16,9 @@ export const xAnim = (dir, len, del, expect, dur) => {
     }
     switch(dir) {
         case 'left':
-            return {...variantObj, hidden: { x: len || 250 }}
+            return {...variantObj, hidden: { x: len || 250, scale: 0 }}
         case 'right':
-            return {...variantObj, hidden: { x: len || -250 }}
+            return {...variantObj, hidden: { x: len || -250, scale: 0 }}
         default: 
             return {...variantObj}
     } 
