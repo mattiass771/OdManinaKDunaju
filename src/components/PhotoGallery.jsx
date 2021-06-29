@@ -40,16 +40,22 @@ export const PhotoGallery = () => {
 
     return (
         <Container style={{backgroundColor: '#6a766a'}} className="py-4" fluid>
-            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block w-25">
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block d-md-none w-50">
                 {carouselItems(0)}
             </Carousel>
-            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block w-25">
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block d-md-none w-50">
                 {carouselItems(1)}
             </Carousel>
-            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block w-25">
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-none d-md-inline-block w-25">
+                {carouselItems(0)}
+            </Carousel>
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-none d-md-inline-block w-25">
+                {carouselItems(1)}
+            </Carousel>
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-none d-md-inline-block w-25">
                 {carouselItems(2)}
             </Carousel>
-            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block w-25">
+            <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-none d-md-inline-block w-25">
                 {carouselItems(3)}
             </Carousel>
         </Container>
