@@ -21,7 +21,7 @@ export const Prefs = () => {
 
     useEffect(() => {
         if (user && user.length > 0) {
-            axios.post(`http://localhost:5050/guests/user/${user}`, {token})
+            axios.post(`https://www.odmaninakdunaju.sk/guests/user/${user}`, {token})
                 .then(res => {
                     const result = res.data
                     const {message, highScore} = result
@@ -37,13 +37,13 @@ export const Prefs = () => {
     }, [user])
 
     const addNewUser = (name, user, attend) => {
-        axios.post(`http://localhost:5050/guests/add-user`, {name, user, attend, token})
+        axios.post(`https://www.odmaninakdunaju.sk/guests/add-user`, {name, user, attend, token})
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
 
     const updateUser = () => {
-        axios.post(`http://localhost:5050/guests/add-attribute`, {...userInfo, token})
+        axios.post(`https://www.odmaninakdunaju.sk/guests/add-attribute`, {...userInfo, token})
             .then(res => console.log(res.data))
             .catch(err => alert('Niečo sa pokazilo a nepodarilo sa nahrať dáta do našej databázy. Skontrolujte si pripojenie a skúste to prosím znova.'))
     }
