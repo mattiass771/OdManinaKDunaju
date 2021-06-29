@@ -6,6 +6,8 @@ import {Prefs} from './components/Prefs/Prefs'
 import {PhotoGallery} from './components/PhotoGallery'
 import {Location} from './components/Location'
 
+//Od Manina K Dunaju
+
 function App() {
   return (
     <div className="App custom-font">
