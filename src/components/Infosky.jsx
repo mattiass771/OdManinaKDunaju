@@ -1,19 +1,14 @@
 import React, {useEffect} from 'react'
 
-import Map from './Map'
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
-import staryDom from '../photos/stary-dom.PNG'
 
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from "react-intersection-observer";
 import { xAnim } from '../anims/xAnim'
 
 export const Location = () => {
-    const geoLocation = {lat: 48.335312831898335, lng: 17.310179542929042}
     const controls = useAnimation();
     const [ref, inView] = useInView();
   
@@ -26,7 +21,7 @@ export const Location = () => {
         <Container style={{backgroundColor: '#c19a94'}} className="py-4" fluid>
             <Row className="px-4 text-center">
                 <Col>
-                    <article style={{fontSize: '250%'}} className="shorelines">(kde)</article>
+                    <article style={{fontSize: '250%'}} className="shorelines">(informácie)</article>
                 </Col>
             </Row>
             <Row className="px-4">
@@ -73,14 +68,7 @@ export const Location = () => {
                     variants={xAnim('left')} 
                     style={{backgroundColor: '#F2F1F0'}}
                 >
-                    <Map 
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API}&v=3.exp&libraries=geometry,drawing,places`}
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `500px` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                        lat={geoLocation.lat}
-                        lng={geoLocation.lng}
-                    />
+                    
                 </motion.div>
             </Row>
         </Container>
