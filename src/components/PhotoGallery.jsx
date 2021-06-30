@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Carousel from 'react-bootstrap/Carousel'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
 import nOne from '../photos/1.png'
@@ -40,6 +42,11 @@ export const PhotoGallery = () => {
 
     return (
         <Container style={{backgroundColor: '#6a766a'}} className="py-4" fluid>
+            <Row className="px-4 text-center">
+                <Col>
+                    <article style={{fontSize: '250%', color: 'whitesmoke'}} className="shorelines">(kto)</article>
+                </Col>
+            </Row>
             <Carousel interval={4000} controls={false} indicators={false} pause={false} keyboard={false} touch={false} className="d-inline-block d-md-none w-50">
                 {carouselItems(0)}
             </Carousel>
