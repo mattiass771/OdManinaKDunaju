@@ -162,7 +162,8 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
                                 id="pig"
                                 draggable="false"
                                 selectable="false"
-                                onClick={(e) => handleClick(e)}
+                                onMouseDown={(e) => handleClick(e)}
+                                onTouchStart={(e) => handleClick(e)}
                                 style={{cursor: clickWait ? '' : 'pointer', position: 'absolute', height: '50px', width: '50px', left: leftCoor, top: topCoor}} 
                                 className="icon-image-small" 
                                 src={clickWait ? angryPig : pig} 
