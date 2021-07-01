@@ -27,6 +27,15 @@ body {
   font-family: Shorelines
 }
 
+.link-custom {
+  color: #894937;
+  cursor: pointer;
+}
+
+.link-custom:hover {
+  text-decoration: underline;
+}
+
 .color-code-yellow {
   color: #c5bba9
 }
