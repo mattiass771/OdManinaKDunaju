@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 import { motion } from 'framer-motion'
 import { xAnim } from '../../anims/xAnim'
@@ -8,6 +9,7 @@ import stop from '../../icons/stop.png'
 import like from '../../icons/like.png'
 import cheerio from '../../icons/cheerio.png'
 import sad from '../../icons/sad.png'
+import pig from '../../icons/pig.png'
 
 import Row from 'react-bootstrap/Row'
 import Image from 'react-bootstrap/Image'
@@ -16,29 +18,51 @@ import Form from 'react-bootstrap/Form'
 import Figure from 'react-bootstrap/Figure'
 import Button from 'react-bootstrap/Button'
 
-export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser}) => {
+const formatName = (input) => {
+    const formatted = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const final = formatted.toLowerCase().replace(/[ ]/g, '-')
+    return final
+}
+
+export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) => {
     const [name, setName] = useState('')
     const [attend, setAttend] = useState('')
     const [goAway, setGoAway] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const conditionTwo = (name && name.length > 3 && name.match(/[a-ža-z]+[ ][a-ža-z]+/i) !== null)
     const conditionOne = (name && name.length > 3 && name.match(/[a-ža-z]+/i) !== null && !conditionTwo)
     const iconStyles = {maxHeight: '40px', width: 'auto', padding: '5px 0px 4px 25px'}
     const handleAsyncUserInfo = async () => {
-        const formatted = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        const user = formatted.toLowerCase().replace(/[ ]/g, '-')
+        const user = formatName(name)
         setUserInfo({...userInfo, name, user, attend})
         setUser(user)
         return user
     }
     const leaveStep = () => {
         handleAsyncUserInfo().then(async (user) => {
-            await addNewUser(name, user, attend)
+            if(!isSubmitted) {
+                await addNewUser(name, user, attend)
+            }
             return user
         }).then((user) => {
             setUserInfo({...userInfo, name, user, attend})
             setGoAway(true)
         })
     }
+    useEffect(() => {
+        const checkUser = formatName(name)
+        axios.post(`https://www.odmaninakdunaju.sk/guests/user/${checkUser}`, {token})
+                .then(res => {
+                    const result = res.data
+                    const {message} = result
+                    if (message === 'success') {
+                        setIsSubmitted(true)
+                    } else {
+                        setIsSubmitted(false)
+                    }
+                }).catch(err => console.log(err))
+
+    }, [name])
     return (
         <Row className="text-center">
             <Col xs={12} md={6} lg={5} xl={{span: 3, offset: 1}}>
@@ -63,16 +87,29 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser}) => {
                             Potvrď svoju účasť
                         </h4>
                         <h5>(vyplnením mena hosťa)</h5>
-                        <p>
-                            Vitaj na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
-                            Poprosili by sme teba aj ostatných hostí z tvojej domácnosti resp. tvojho/tvoju "+1", 
-                            aby ste nám sem zazdieľali zopár infošiek a tým sebe (aj nám)
-                            pomohli k lepšiemu zážitku z našej svadby. Aby toho na vás nebolo veľa naraz, rozkúskujeme si to
-                            na pár krokov.
-                        </p>
+                        {!isSubmitted ? 
+                            <p>
+                                Vitaj na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
+                                Poprosili by sme teba aj ostatných hostí z tvojej domácnosti resp. tvojho/tvoju "+1", 
+                                aby ste nám sem zazdieľali zopár infošiek a tým sebe (aj nám)
+                                pomohli k lepšiemu zážitku z našej svadby. Aby toho na vás nebolo veľa naraz, rozkúskujeme si to
+                                na pár krokov.
+                            </p>
+                            : 
+                            <p>
+                                Aha! Vidíme že už si zaregistrovaný, tak ti ostáva zahrať si prasiatko, aby si nahral ešte vyššie skóre. 
+                                <br /> (Lebo zatial je to slabotka)
+                            </p>
+                        }
                     </article>
                     <Form.Group>
-                        <Form.Label>Meno a priezvisko:</Form.Label>
+                        <Form.Label>
+                            Meno a priezvisko: <br />
+                            <span style={{fontSize: '65%'}}>
+                                Ak už si to raz vyplňoval, môžeš si vylepšiť skóre. Stačí zadať znovu tvoje meno. <br />
+                                (s alebo bez diakritiky, nám to je jedno)
+                            </span>
+                        </Form.Label>
                         <Form.Control
                             spellCheck="false"
                             type="text" 
@@ -82,6 +119,8 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser}) => {
                     </Form.Group>
                     <br />
                     <Row>
+                        {!isSubmitted ?
+                        <>
                         <Col>
                             <Figure>
                                 <Figure.Image
@@ -114,6 +153,23 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser}) => {
                                 </Figure.Caption>
                             </Figure>
                         </Col>
+                        </> :
+                        <Col>
+                            <Figure>
+                                <Figure.Image
+                                    width={100}
+                                    height={100}
+                                    alt="whatever"
+                                    src={pig}
+                                    className={attend === 'whatever' ? "box-shadow" : "box-shadow-light"}
+                                    style={{border: attend === 'whatever' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                    onClick={() => setAttend('whatever')}
+                                />
+                                <Figure.Caption style={{fontSize: '150%' , color: attend === 'whatever' ? '#894937' : '#333333'}}>
+                                    Chcem hrať prasa.
+                                </Figure.Caption>
+                            </Figure>
+                        </Col>}
                     </Row>
                     <br />
                     {!conditionOne && !conditionTwo &&
@@ -130,7 +186,7 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser}) => {
                     }
                     {conditionTwo && !attend &&
                         <Button variant="dark" disabled>
-                            Ešte vyber účasť.
+                            Ešte vyber možnosť.
                             <Image style={iconStyles} src={like} />
                         </Button>
                     }
