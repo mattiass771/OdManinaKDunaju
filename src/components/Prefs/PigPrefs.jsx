@@ -66,6 +66,7 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
     }
 
     const handleClick = (e) => {
+        console.log(e.target.id)
         if (e.target.id === "pig" && e.isTrusted) {
             if (clickWait) {
                 return activateClickWait()
@@ -106,7 +107,7 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
     }, [leftCoor])
     
     const handleCoors = async () => {
-        await sleep(intensity)
+        await sleep(intensity || 4)
         const changeTop = Math.floor(Math.random() * 3) + 0
         const changeLeft = Math.floor(Math.random() * 3) + 0
         setLeftCoor(goMinusLeft 
@@ -156,14 +157,12 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
                             <span>Pokusy: <strong>{tries}</strong></span>
                         </p>
                     </div>
-                    <div id="grass" onClick={(e) => handleClick(e)} style={{margin: '0 auto', position: 'relative', height: '300px', width: '300px', border: '2px solid #894937', background: `url(${grass})`}}>
+                    <div id="grass" onMouseDown={(e) => handleClick(e)} style={{margin: '0 auto', position: 'relative', height: '300px', width: '300px', border: '2px solid #894937', background: `url(${grass})`}}>
                         {tries > 0 &&
                             <Image 
                                 id="pig"
                                 draggable="false"
                                 selectable="false"
-                                onMouseDown={(e) => handleClick(e)}
-                                onTouchStart={(e) => handleClick(e)}
                                 style={{cursor: clickWait ? '' : 'pointer', position: 'absolute', height: '50px', width: '50px', left: leftCoor, top: topCoor}} 
                                 className="icon-image-small" 
                                 src={clickWait ? angryPig : pig} 
