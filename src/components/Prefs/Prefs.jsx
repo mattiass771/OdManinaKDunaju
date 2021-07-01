@@ -45,7 +45,7 @@ export const Prefs = () => {
     const updateUser = () => {
         axios.post(`https://www.odmaninakdunaju.sk/guests/add-attribute`, {...userInfo, token})
             .then(res => console.log(res.data))
-            .catch(err => alert('Niečo sa pokazilo a nepodarilo sa nahrať dáta do našej databázy. Skontrolujte si pripojenie a skúste to prosím znova.'))
+            .catch(err => console.log('hops.'))
     }
 
     useEffect(() => {
