@@ -48,14 +48,22 @@ router.route("/update-highscore/:user").post((req, res) => {
 
 router.route("/add-user").post((req, res) => {
     const {name, user, attend} = req.body
-    const addGuest = new Guest({
-        name,
-        user,
-        attend
-    });
-    addGuest
-        .save()
-        .then(() => res.json(`Guest remembered!`))
+    Guest.findOne({user: user})
+        .then((guest) => {
+            if (guest && guest.name) {
+                return res.json('user exists')
+            } else {
+                const addGuest = new Guest({
+                    name,
+                    user,
+                    attend
+                });
+                addGuest
+                    .save()
+                    .then(() => res.json(`Guest remembered!`))
+                    .catch((err) => res.status(400).json(`Error: ${err}`));
+            }
+        })
         .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
