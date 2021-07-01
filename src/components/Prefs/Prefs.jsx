@@ -32,7 +32,7 @@ export const Prefs = () => {
                     } else {
                         setTimeout(() => setStep('diet-step'), 250)
                     }
-                })
+                }).catch(err => console.log(err))
         }
     }, [user])
 
@@ -61,7 +61,7 @@ export const Prefs = () => {
 
     return (
         <Container style={{backgroundColor: '#e0c8a0'}} className="py-4" fluid>
-            {step === 'name-step' && <NamePrefs userInfo={userInfo} setUserInfo={setUserInfo} setUser={setUser} setStep={setStep} addNewUser={addNewUser} />}
+            {step === 'name-step' && <NamePrefs token={token} userInfo={userInfo} setUserInfo={setUserInfo} setUser={setUser} setStep={setStep} addNewUser={addNewUser} />}
             {step === 'diet-step' && <DietPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
             {step === 'apertizer-step' && <ApertizerPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
             {step === 'soup-step' && <SoupPrefs userInfo={userInfo} setUserInfo={setUserInfo} setStep={setStep} updateUser={updateUser} />}
