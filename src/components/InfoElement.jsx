@@ -25,10 +25,12 @@ export const InfoElement = ({leftText, rightText}) => {
                 style={{color: '#6a766a'}}
             >
             <Col>
-                <p style={{fontSize: '180%', textAlign: 'right'}}>{leftText}</p>
+                <p className="d-none d-md-block" style={{fontSize: '180%', textAlign: 'right'}}>{leftText}</p>
+                <p className="d-md-none" style={{fontSize: '120%', textAlign: 'right'}}>{leftText}</p>
             </Col>
             <Col>
-                <p style={{fontSize: '180%'}}>{rightText}</p>
+                <p className="d-none d-md-block" style={{fontSize: '180%'}}>{rightText}</p>
+                <p className="d-md-none" style={{fontSize: '120%'}}>{rightText}</p>
             </Col>
         </motion.div>
     )
