@@ -14,7 +14,7 @@ const guestsSchema = new Schema({
     liquor: { type: String, default: '' },
     closed: { type: Boolean, default: false },
     highScore: { type: Number, default: 0 },
-    attend: { type: String, default: '' }
+    attend: { type: String, default: '' },
 });
   
 const Guest = mongoose.model("Guest", guestsSchema);

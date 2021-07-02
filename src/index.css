@@ -24,7 +24,8 @@ body {
 }
 
 .shorelines {
-  font-family: Shorelines
+  font-family: Shorelines;
+  padding-bottom: 10px
 }
 
 .link-custom {
