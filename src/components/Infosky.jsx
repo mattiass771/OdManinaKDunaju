@@ -24,7 +24,7 @@ export const Infosky = () => {
             <InfoElement leftText={"Čas obradu"} rightText={"14:00"} />
             <InfoElement leftText={"Miesto hostiny"} rightText={<a style={{color: '#894937'}} href={"https://www.restauraciastarydom.sk/"} target="_blank" rel="noopener noreferrer">Starý Dom - Vinárstvo u Ludvíka</a>} />
             <InfoElement leftText={"Čas hostiny"} rightText={"Po obrade"} />
-            <InfoElement leftText={"Dress Code"} rightText={<span>Asi každý vie, ale pre tých, čo nie to rozpíšeme: Slušne, ale nie ako na ples v opere, alebo filmový festival v Cannes. Pre inšpiráciu <span onClick={() => setDressCode(true)} className="link-custom">klikni sem.</span></span>} />
+            <InfoElement leftText={"Dress Code"} rightText={<span>Asi každý vie, ale pre tých, čo by si neboli istí, dress code sa volá <strong>Cocktail Attire</strong>. Pre inšpiráciu <span onClick={() => setDressCode(true)} className="link-custom">klikni sem.</span></span>} />
             <InfoElement leftText={"Doprava"} rightText={`Bude k dispozícii mikrobus, ktorý bude jazdiť medzi Bratislavou a Modrou.
                     Cena taxíka do Bratislavy je v priemere približne 25€.`} />
             <InfoElement leftText={"Ubytovanie"} rightText={<span>Ubytko hradíme rodine, pre ostatných je v okolí k dispozícii napríklad &nbsp;
