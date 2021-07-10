@@ -28,9 +28,10 @@ router.route("/").post((req, res) => {
 router.route("/get-names").post((req, res) => {
     Guest.find()
       .then((guests) => {
-            return guests.map(guest => {
+            const guestsArr = guests.map(guest => {
                 return {name: guest.name, user: guest.user}
             })
+            res.status(200).json(guestsArr)
       })
       .catch((err) => res.status(400).json(`Error: ${err}`));
 });

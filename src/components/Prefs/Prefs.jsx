@@ -38,14 +38,14 @@ export const Prefs = () => {
 
     const addNewUser = (name, user, attend) => {
         axios.post(`https://www.odmaninakdunaju.sk/guests/add-user`, {name, user, attend, token})
-            .then(res => console.log(res.data))
+            .then(res => {return})
             .catch(err => console.log(err))
     }
 
     const updateUser = () => {
         axios.post(`https://www.odmaninakdunaju.sk/guests/add-attribute`, {...userInfo, token})
-            .then(res => console.log(res.data))
-            .catch(err => console.log('hops.'))
+            .then(res => {return})
+            .catch(err => console.log(err))
     }
 
     useEffect(() => {
