@@ -19,7 +19,8 @@ import Figure from 'react-bootstrap/Figure'
 import Button from 'react-bootstrap/Button'
 
 const formatName = (input) => {
-    const formatted = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const trimmed = input.trim()
+    const formatted = trimmed.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     const final = formatted.toLowerCase().replace(/[ ]/g, '-')
     return final
 }
