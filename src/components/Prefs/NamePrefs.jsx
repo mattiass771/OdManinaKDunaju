@@ -139,22 +139,6 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                                     <Figure.Image
                                         width={100}
                                         height={100}
-                                        alt="whatever"
-                                        src={pig}
-                                        className={attend === 'whatever' ? "box-shadow" : "box-shadow-light"}
-                                        style={{border: attend === 'whatever' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
-                                        onClick={() => handlePigAttend()}
-                                    />
-                                    <Figure.Caption style={{fontSize: '150%' , color: attend === 'whatever' ? '#894937' : '#333333'}}>
-                                        Chcem hrať prasa.
-                                    </Figure.Caption>
-                                </Figure>
-                            </Col>
-                            <Col>
-                                <Figure>
-                                    <Figure.Image
-                                        width={100}
-                                        height={100}
                                         alt="nepridem"
                                         src={sad}
                                         className={attend === 'nepridem' ? "box-shadow" : "box-shadow-light"}
@@ -163,6 +147,22 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                                     />
                                     <Figure.Caption style={{fontSize: '150%' , color: attend === 'nepridem' ? '#894937' : '#333333'}}>
                                         Neprídem
+                                    </Figure.Caption>
+                                </Figure>
+                            </Col>
+                            <Col>
+                                <Figure>
+                                    <Figure.Image
+                                        width={100}
+                                        height={100}
+                                        alt="whatever"
+                                        src={pig}
+                                        className={attend === 'whatever' ? "box-shadow" : "box-shadow-light"}
+                                        style={{border: attend === 'whatever' ? '3px solid #894937' : '0px', borderRadius: '5px'}}
+                                        onClick={() => handlePigAttend()}
+                                    />
+                                    <Figure.Caption style={{fontSize: '130%' , color: attend === 'whatever' ? '#894937' : '#333333'}}>
+                                        Chcem hrať prasa.
                                     </Figure.Caption>
                                 </Figure>
                             </Col>
