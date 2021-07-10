@@ -87,7 +87,7 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                         <h4>
                             Potvrď svoju účasť
                         </h4>
-                        <h5>(vyplnením mena hosťa)</h5>
+                        <h5>Ak si chceš zahrať prasiatko a už máš registráciu za sebou, vyplň svoje meno (tak ako si ho zadal) a môžeš skúšať vylepšiť svoje skóre.</h5>
                         {!isSubmitted ? 
                             <p>
                                 Vitaj na našom nekonkurenčnom organizačnom webe pre lenivých plánovačov. (Mladomanželov)
