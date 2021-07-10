@@ -157,7 +157,7 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
                             <span>Pokusy: <strong>{tries}</strong></span>
                         </p>
                     </div>
-                    <div id="grass" onMouseDown={(e) => handleClick(e)} style={{margin: '0 auto', position: 'relative', height: '300px', width: '300px', border: '2px solid #894937', background: `url(${grass})`}}>
+                    <div id="grass" onMouseDown={(e) => handleClick(e)} onTouchStart={(e) => handleClick(e)} style={{margin: '0 auto', position: 'relative', height: '300px', width: '300px', border: '2px solid #894937', background: `url(${grass})`}}>
                         {tries > 0 &&
                             <Image 
                                 id="pig"
