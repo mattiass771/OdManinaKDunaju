@@ -119,7 +119,7 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                         <br />
                         <Row>
                             <Col>
-                                <Figure>
+                                <Figure style={{height: '100px', width: '100px'}}>
                                     <Figure.Image
                                         width={100}
                                         height={100}
@@ -135,7 +135,7 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                                 </Figure>
                             </Col>
                             <Col>
-                                <Figure>
+                                <Figure style={{height: '100px', width: '100px'}}>
                                     <Figure.Image
                                         width={100}
                                         height={100}
@@ -151,7 +151,7 @@ export const NamePrefs = ({setUser, setUserInfo, userInfo, addNewUser, token}) =
                                 </Figure>
                             </Col>
                             <Col>
-                                <Figure>
+                                <Figure style={{height: '100px', width: '100px'}}>
                                     <Figure.Image
                                         width={100}
                                         height={100}
