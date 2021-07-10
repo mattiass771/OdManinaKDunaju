@@ -25,6 +25,16 @@ router.route("/").post((req, res) => {
       .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+router.route("/get-names").post((req, res) => {
+    Guest.find()
+      .then((guests) => {
+            return guests.map(guest => {
+                return {name: guest.name, user: guest.user}
+            })
+      })
+      .catch((err) => res.status(400).json(`Error: ${err}`));
+});
+
 router.route("/user/:user").post((req, res) => {
     const {user} = req.params
     Guest.findOne({user: user})
