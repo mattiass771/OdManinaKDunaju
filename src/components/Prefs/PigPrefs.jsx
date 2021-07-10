@@ -44,7 +44,7 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
     useEffect(() => {
         if (highScore > 0) {
             axios.post(`https://www.odmaninakdunaju.sk/guests/update-highscore/${user}`, {highScore, token})
-                .then(res => console.log(res.data))
+                .then(res => {return})
                 .catch(err => console.log(err))
         }
     }, [highScore])
@@ -66,7 +66,6 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
     }
 
     const handleClick = (e) => {
-        console.log(e.target.id)
         if (e.target.id === "pig" && e.isTrusted) {
             if (clickWait) {
                 return activateClickWait()
@@ -107,16 +106,17 @@ export const PigPrefs = ({token, user, setUser, setStep, highScoreDb}) => {
     }, [leftCoor])
     
     const handleCoors = async () => {
-        await sleep(intensity || 4)
-        const changeTop = Math.floor(Math.random() * 3) + 0
-        const changeLeft = Math.floor(Math.random() * 3) + 0
+        await sleep(typeof intensity === 'number' ? intensity : 4)
+        const baseVal = points > 10 ? Math.floor(points/10) : 1
+        const changeTop = Math.floor(Math.random() * 3) + baseVal
+        const changeLeft = Math.floor(Math.random() * 3) + baseVal
         setLeftCoor(goMinusLeft 
-            ? leftCoor-(changeTop+changeLeft === 0 ? 1 : changeLeft) 
-            : leftCoor+(changeTop+changeLeft === 0 ? 1 : changeLeft)
+            ? leftCoor-(changeTop+changeLeft === 0 ? baseVal : changeLeft) 
+            : leftCoor+(changeTop+changeLeft === 0 ? baseVal : changeLeft)
         )
         setTopCoor(goMinusTop 
-            ? topCoor-(changeTop+changeLeft === 0 ? 1 : changeTop) 
-            : topCoor+(changeTop+changeLeft === 0 ? 1 : changeTop)
+            ? topCoor-(changeTop+changeLeft === 0 ? baseVal : changeTop) 
+            : topCoor+(changeTop+changeLeft === 0 ? baseVal : changeTop)
         )
     }
     
